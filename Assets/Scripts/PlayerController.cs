@@ -8,16 +8,20 @@ public class PlayerController : MonoBehaviour
     private Vector2 direction;// the direction PacMan is going.
     
     Rigidbody2D rb2d;
+    Animator animator;
     
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        animator.SetBool("isMoving?", rb2d.velocity.magnitude > 0);
+
         //Left and Right Movement
         if(Input.GetAxis("Horizontal") < 0)
         {
