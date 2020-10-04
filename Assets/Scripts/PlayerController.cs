@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    //references
     public float speed; //change speed
+    public int score = 0; //the score
     private Vector2 direction;// the direction PacMan is going.
+    public Text scoreText; // the Text UI Component that shows the score to the user.
+    
     
     Rigidbody2D rb2d;
     Animator animator;
@@ -61,5 +66,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, Mathf.Round(transform.position.y));
         }
+    }
+
+    public void addPoints(int pointsToAdd)
+    {
+        score += pointsToAdd;
+        scoreText.text = "" + score;
     }
 }
