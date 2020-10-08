@@ -5,7 +5,7 @@ using UnityEngine;
 public class GhostController : MonoBehaviour
 {
     public float speed = 1.0f; //The speed that the ghost can travel at.
-    private Vector2 direction = Vector2.up;// The direction the ghosts faces.
+    public Vector2 direction = Vector2.up;// The direction the ghosts faces.
     
     //References to rigidbody2d and circle collider.
     private Rigidbody2D rb2d;
@@ -22,6 +22,13 @@ public class GhostController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Eye Rotation sync with movement
+        foreach(Transform t in GetComponentInChildren<Transform>())
+        {
+            t.up = direction;
+        }
+
+       //Movement
         rb2d.velocity = direction * speed;
         if (rb2d.velocity.x == 0)
         {
